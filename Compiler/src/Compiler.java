@@ -7,12 +7,17 @@ import javax.swing.JOptionPane;
 
 public class Compiler {
     
-    ArrayList<String> linesIn = new ArrayList<>();
+    static ArrayList<String> words = new ArrayList<>();
 
     public static void main(String[] args) {
         readInFile();
+        for(int i = 0; i < words.size(); i++){
+            System.out.println(words.get(i));
+        }
     }
     
+    //Method readInFile is going to read in the file and create an arraylist formatting
+    //all the words that are within the file into an arraylist called words
     public static void readInFile(){
         //Get the file path
         String filePath = JOptionPane.showInputDialog("Give the file path for the text file you'd like to write in.");
@@ -26,7 +31,12 @@ public class Compiler {
             String linesRead;
             //Reading every line
             while((linesRead = br.readLine()) != null){
-                System.out.println(linesRead);
+                //Split the string in with every space, creating and seperating every 'word' in the line
+                String[] tempWords = linesRead.split(" "); 
+                //Go through each 'word' and store it into an arraylist and keep them stored in the arraylist
+                for(int i = 0; i < tempWords.length; i++){
+                    words.add(tempWords[i]);
+                }
             }
         } 
         catch (Exception ex) {
