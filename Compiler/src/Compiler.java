@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 
@@ -10,10 +12,29 @@ public class Compiler {
     static ArrayList<String> words = new ArrayList<>();
 
     public static void main(String[] args) {
+        wordsToChar();
         readInFile();
         for(int i = 0; i < words.size(); i++){
             System.out.println(words.get(i));
         }
+    }
+    
+    public static void wordsToChar(){
+        //This method is going to go through the words array and split up
+        //the words that have operators included within them.
+        String value = "#`~!#$%^，";
+        String pattern = "(?U)[\\p{Punct}&&[^@',&]]";
+        Pattern r = Pattern.compile(pattern);    // Create a Pattern object
+        Matcher m = r.matcher(value);            // Now create matcher object.
+        while (m.find()) {
+            System.out.println("Found value: " + m.group());
+        }
+    }
+    
+    public static void getToken(){
+        //This method will iterate through the words array and determine which
+        //words are what tokens
+        
     }
     
     //Method readInFile is going to read in the file and create an arraylist formatting
