@@ -1,5 +1,7 @@
-Hey
-How are you?
-What is up
-....
-Thank you
+PROGRAM Sample (Input, Output);
+
+  CONST
+
+     x  = 15;
+
+;
