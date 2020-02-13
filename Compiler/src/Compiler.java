@@ -17,6 +17,36 @@ public class Compiler {
         getToken();
     }
     
+    public static void getToken(){
+        //This method will iterate through the wordsWithOp arraylist and determine which words are what tokens
+        
+        //Initializing tokens array
+        String[][] tokens = new String[wordsWithOp.size()][2];
+        //Creating the various token patterns needed to recognize the proper tokens
+        Pattern tokWord = Pattern.compile("^[a-zA-Z][a-zA-Z0-9]*$");
+        Pattern tokOp = Pattern.compile("[^a-zA-Z0-9]");
+        Pattern tokNumber = Pattern.compile("[0-9]");
+        //Iterating through the wordsWithOp arraylist to fill tokens array with appropriate tokens
+        for(int i = 0; i < wordsWithOp.size(); i++){
+            tokens[i][0] = wordsWithOp.get(i);
+            if(tokWord.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "tokword";
+            }
+            else if(tokOp.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "tokop";
+            }
+            else if(tokNumber.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "toknumber";
+            }
+        }
+        
+        //Looping through tokens array to show what tokens are with what
+        for(int i = 0; i < tokens.length; i++){
+            System.out.println(tokens[i][0] + " " + tokens[i][1]);
+        }
+        
+    }
+    
     public static void parseWord(String value){
         //This method is going to go through the words array and split up the words that have operators included within them and then store
         //them in the array wordsWithOp
@@ -63,33 +93,6 @@ public class Compiler {
             
     }
     
-    public static void getToken(){
-        //This method will iterate through the wordsWithOp arraylist and determine which words are what tokens
-        
-        //Initializing tokens array
-        String[][] tokens = new String[wordsWithOp.size()][2];
-        //Creating the various token patterns needed to recognize the proper tokens
-        Pattern tokWord = Pattern.compile("^[a-zA-Z][a-zA-Z0-9]*$");
-        Pattern tokOp = Pattern.compile("[^a-zA-Z0-9]");
-        Pattern tokNumber = Pattern.compile("[0-9]");
-        for(int i = 0; i < wordsWithOp.size(); i++){
-            tokens[i][0] = wordsWithOp.get(i);
-            if(tokWord.matcher(wordsWithOp.get(i)).find()){
-                tokens[i][1] = "tokword";
-            }
-            else if(tokOp.matcher(wordsWithOp.get(i)).find()){
-                tokens[i][1] = "tokop";
-            }
-            else if(tokNumber.matcher(wordsWithOp.get(i)).find()){
-                tokens[i][1] = "toknumber";
-            }
-        }
-        
-        for(int i = 0; i < tokens.length; i++){
-            System.out.println(tokens[i][0] + " " + tokens[i][1]);
-        }
-        
-    }
     
     //Method readInFile is going to read in the file and create an arraylist formatting
     //all the words that are within the file into an arraylist called words
