@@ -14,12 +14,7 @@ public class Compiler {
     
     public static void main(String[] args) {
         readInFile();    
-        
-        for(int i = 0; i < wordsWithOp.size(); i++){
-            System.out.println(wordsWithOp.get(i));
-        }
-
-        
+        getToken();
     }
     
     public static void parseWord(String value){
@@ -68,10 +63,31 @@ public class Compiler {
             
     }
     
-    
     public static void getToken(){
-        //This method will iterate through the words array and determine which
-        //words are what tokens
+        //This method will iterate through the wordsWithOp arraylist and determine which words are what tokens
+        
+        //Initializing tokens array
+        String[][] tokens = new String[wordsWithOp.size()][2];
+        //Creating the various token patterns needed to recognize the proper tokens
+        Pattern tokWord = Pattern.compile("^[a-zA-Z][a-zA-Z0-9]*$");
+        Pattern tokOp = Pattern.compile("[^a-zA-Z0-9]");
+        Pattern tokNumber = Pattern.compile("[0-9]");
+        for(int i = 0; i < wordsWithOp.size(); i++){
+            tokens[i][0] = wordsWithOp.get(i);
+            if(tokWord.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "tokword";
+            }
+            else if(tokOp.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "tokop";
+            }
+            else if(tokNumber.matcher(wordsWithOp.get(i)).find()){
+                tokens[i][1] = "toknumber";
+            }
+        }
+        
+        for(int i = 0; i < tokens.length; i++){
+            System.out.println(tokens[i][0] + " " + tokens[i][1]);
+        }
         
     }
     

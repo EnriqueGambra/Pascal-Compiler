@@ -4,4 +4,3 @@ PROGRAM Sample (Input, Output);
 
      x  = 15;
 
-;
