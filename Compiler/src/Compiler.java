@@ -41,10 +41,14 @@ public class Compiler {
         }
         
         //Looping through tokens array to show what tokens are with what
-        for(int i = 0; i < tokens.length; i++){
-            System.out.println(tokens[i][0] + " " + tokens[i][1]);
-        }
+        //for(int i = 0; i < tokens.length; i++){
+          //  System.out.println(tokens[i][0] + " " + tokens[i][1]);
+        //}
         
+        //Calling the SymbolTable class to convert the appropriate tokens
+        SymbolTable s1 = new SymbolTable(tokens);
+        s1.getSTableToken();
+        s1.sTableToString();
     }
     
     public static void parseWord(String value){
@@ -98,10 +102,10 @@ public class Compiler {
     //all the words that are within the file into an arraylist called words
     public static void readInFile(){
         //Get the file path
-        String filePath = JOptionPane.showInputDialog("Give the file path for the text file you'd like to write in.");
+        //String filePath = JOptionPane.showInputDialog("Give the file path for the text file you'd like to write in.");
         
         //Using a sample file path for now... need double \\ to avoid the escape character in a string
-        File pascalFile = new File(filePath);
+        File pascalFile = new File("C:\\Users\\Owner\\github-Repos\\Pascal-Compiler\\sample_pascal_code.txt");
         
         try {
             //Trying to now open the file
