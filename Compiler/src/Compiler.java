@@ -101,7 +101,7 @@ public class Compiler {
         String filePath = JOptionPane.showInputDialog("Give the file path for the text file you'd like to write in.");
         
         //Using a sample file path for now... need double \\ to avoid the escape character in a string
-        File pascalFile = new File("C:\\Users\\Owner\\github-Repos\\Pascal-Compiler\\sample_pascal_code.txt");
+        File pascalFile = new File(filePath);
         
         try {
             //Trying to now open the file
