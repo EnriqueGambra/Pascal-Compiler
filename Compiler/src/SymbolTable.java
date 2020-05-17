@@ -4,14 +4,6 @@ public class SymbolTable {
     //This class will create the symbol table from the already parsed tokens
     
     private static HashMap<String, String> sTable = new HashMap<>();
-    private static String[][] tokenArr;
-    private static String[][] sTableArr;
-    
-    
-    public SymbolTable(String[][] tokenArr){
-        this.tokenArr = tokenArr;
-        populateSTable();
-    }
     
     public static void populateSTable(){
         //This method will populate the symbol table to include all tokens and key words
@@ -26,11 +18,25 @@ public class SymbolTable {
         sTable.put(",", "tokcomma");
         sTable.put("(", "tokopenparen");
         sTable.put(")", "tokcloseparen");
+        sTable.put("VAR", "tokvardeclaration");
+        sTable.put("procedure", "tokprocedure");
+        sTable.put("BEGIN", "tokbegin");
+        sTable.put(",", "tokcomma");
+        sTable.put(":", "tokcolon");
+        sTable.put("END", "tokend");
+        sTable.put("if", "tokif");
+        sTable.put("while", "tokwhile");
+        sTable.put("else", "tokelse");
+        sTable.put("not", "toknot");
+        sTable.put("+", "tokaddop");
+        sTable.put("*", "mulop");
     }
     
-    public void getSTableToken(){
+    public static String[][] getSTableToken(String[][] tokenArr){
         //This method will convert the tokens from the compiler class and put them as a part of the symbol table class
-        sTableArr = new String[tokenArr.length][2];
+        populateSTable();
+        
+        String[][] sTableArr = new String[tokenArr.length][2];
         
         boolean skipCurrent = false;
         
@@ -67,9 +73,10 @@ public class SymbolTable {
             }
         }
         
+        return sTableArr;
     }
     
-    public void sTableToString(){
+    public static void sTableToString(String[][] sTableArr){
         //Outputs the sTableArr to the terminal showing the appropriate tokens
         for(int i = 0; i < sTableArr.length; i++){
             String word = sTableArr[i][0];

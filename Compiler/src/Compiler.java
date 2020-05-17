@@ -46,9 +46,11 @@ public class Compiler {
         //}
         
         //Calling the SymbolTable class to convert the appropriate tokens
-        SymbolTable s1 = new SymbolTable(tokens);
-        s1.getSTableToken();
-        s1.sTableToString();
+        //SymbolTable s1 = new SymbolTable(tokens);
+        String[][] sTable = SymbolTable.getSTableToken(tokens);
+        SymbolTable.sTableToString(sTable);
+        
+        
     }
     
     public static void parseWord(String value){
